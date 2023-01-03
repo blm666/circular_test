@@ -1,0 +1,5 @@
+gcc -shared a1.c -o liba.so || exit 1
+gcc -shared b.c liba.so -o libb.so || exit 1
+gcc -shared a2.c libb.so  -o liba.so || exit 1
+gcc main.c liba.so libb.so || exit 1
+LD_LIBRARY_PATH=. ./a.out || exit 1
